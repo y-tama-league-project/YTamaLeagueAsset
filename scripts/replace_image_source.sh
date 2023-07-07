@@ -1,0 +1,16 @@
+player01=8
+player02=28
+player03=9
+player04=3
+player05=17
+player06=15
+player07=32
+player08=21
+player09=20
+player10=24
+player11=10
+player12=25
+player13=7
+player14=4
+player15=14
+player16=30
