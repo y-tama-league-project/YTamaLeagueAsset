@@ -36,7 +36,7 @@
 ### 用途
 本配信中の出場選手紹介画像
 
-### team_logos
+## team_logos
 ### 規則
 `team_logos/{teamId:2d}_{teamName}/{teamId:2d}_{teamName}_{size}.png`  
 ※ただし、`size={250x, 500x, 1000x, 1500x, 2000x}`
