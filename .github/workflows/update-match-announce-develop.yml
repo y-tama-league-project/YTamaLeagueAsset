@@ -20,7 +20,7 @@ jobs:
           git checkout -B pr_test_${{ github.run_number }}
       - name: Download Image
         run: |
-          curl -L 'https://script.google.com/macros/s/AKfycbyDVgKZXgC9jtIrqe2qz-FStb-F1CW6c3PaIVVSm_LsiZYRb8_gCmZhyAYJs51ldPXu/exec' | base64 --decode > streaming/match_announce_1_1.png
+          curl -L 'https://script.google.com/macros/s/AKfycbx8uGR7utFSeYi1AO8r9dGKSFsWgKK4DYh0nUFZCLfN6Vr_s5qtNftmnx1c21kkgcwjPw/exec?api=downloadImage&page=0' | base64 --decode > streaming/match_announce_1_1.png
       - name: Count changes
         id: count_changes
         run: |
