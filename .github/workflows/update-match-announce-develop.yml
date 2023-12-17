@@ -25,7 +25,7 @@ jobs:
         id: count_changes
         run: |
           git add streaming
-          echo "count=$(git diff --name-only | wc -l)" >> $GITHUB_OUTPUT
+          echo "count=$(git diff --cached --name-only | wc -l)" >> $GITHUB_OUTPUT
       - name: Commit & Push
         if: steps.count_changes.outputs.count > 0
         run: |
