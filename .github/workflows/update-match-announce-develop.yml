@@ -25,6 +25,7 @@ jobs:
         id: count_changes
         run: |
           echo "count=$(git diff --name-only | wc -l)" >> $GITHUB_OUTPUT
+      - run: ls
       - name: Commit & Push
         if: steps.count_changes.outputs.count > 0
         run: |
