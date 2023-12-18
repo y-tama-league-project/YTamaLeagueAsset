@@ -5,6 +5,8 @@ on:
       players:
         descripts: array of paleyr id
         required: true
+env:
+  NOTIFICATION_TARGET: "https://discord.com/api/webhooks/1185504662124765244/e6jyJIvgi0Zq36BUuaoX2wHZaXoboIMEA0sxEjh3wiZ14qo7duZ_gxrL8_1bNHhOuWxa"
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -76,7 +78,7 @@ jobs:
           cp_image 02 03 01 ${players[20]}
           cp_image 02 03 02 ${players[21]}
           cp_image 02 03 03 ${players[22]}
-          cp_image 02 03 04 ${players[22]}
+          cp_image 02 03 04 ${players[23]}
       - name: Count changes
         id: count_changes
         run: |
@@ -107,11 +109,14 @@ jobs:
           gh pr merge pr_test_${{ github.run_number }} -d -s
       - name: Discord Notification
         if: steps.count_changes.outputs.count > 0
-        uses: tsickert/discord-webhook@v5.3.0
+        uses: sarisia/actions-status-discord@v1.13.0
         with:
-          webhook-url: "https://discord.com/api/webhooks/1185504716659101767/OZUmuAWBMGq-vKqBf6tCyd1DIhWOpY4NGPmalwIlVg493zTialHtAFyb3vp8RglkIp4i"
-          content: "画像更新PRをマージしました ${{ steps.create_pr.outputs.pr_url }}"
+          webhook: $NOTIFICATION_TARGET
+          nocontext: true
+          url: ${{ steps.create_pr.outputs.pr_url }}
+          content: "画像更新PRをマージしました"
       - uses: sarisia/actions-status-discord@v1.13.0
-        if: failure()
+        if: always()
         with:
-          webhook: "https://discord.com/api/webhooks/1185504662124765244/e6jyJIvgi0Zq36BUuaoX2wHZaXoboIMEA0sxEjh3wiZ14qo7duZ_gxrL8_1bNHhOuWxa"
+          webhook: $NOTIFICATION_TARGET
+          status: ${{ job.status }}
