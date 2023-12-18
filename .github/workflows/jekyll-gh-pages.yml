@@ -55,5 +55,5 @@ jobs:
       - uses: sarisia/actions-status-discord@v1.13.0
         if: always()
         with:
-          webhook: $NOTIFICATION_TARGET
+          webhook: ${{ env.NOTIFICATION_TARGET }}
           status: ${{ job.status }}
