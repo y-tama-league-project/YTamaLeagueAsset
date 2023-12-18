@@ -45,6 +45,8 @@ jobs:
 
           players=(${${{ github.event.inputs.players }}//,/ })
 
+          echo ${players[@]}
+
           cp_image 01 01 01 ${players[0]}
           cp_image 01 01 02 ${players[1]}
           cp_image 01 01 03 ${players[2]}
