@@ -6,6 +6,7 @@ on:
         descripts: array of paleyr id
         required: true
 env:
+  ASSET_GENERATION_API_ENDPOINT: "https://script.google.com/macros/s/AKfycbx8uGR7utFSeYi1AO8r9dGKSFsWgKK4DYh0nUFZCLfN6Vr_s5qtNftmnx1c21kkgcwjPw/exec"
   NOTIFICATION_TARGET: "https://discord.com/api/webhooks/1185504662124765244/e6jyJIvgi0Zq36BUuaoX2wHZaXoboIMEA0sxEjh3wiZ14qo7duZ_gxrL8_1bNHhOuWxa"
 jobs:
   Explore-GitHub-Actions:
@@ -25,12 +26,12 @@ jobs:
           git checkout -B pr_test_${{ github.run_number }}
       - name: Download Image
         run: |
-          curl -L 'https://script.google.com/macros/s/AKfycbx8uGR7utFSeYi1AO8r9dGKSFsWgKK4DYh0nUFZCLfN6Vr_s5qtNftmnx1c21kkgcwjPw/exec?api=downloadImage&page=0' | base64 --decode > streaming/match_announce_1_1.png
-          curl -L 'https://script.google.com/macros/s/AKfycbx8uGR7utFSeYi1AO8r9dGKSFsWgKK4DYh0nUFZCLfN6Vr_s5qtNftmnx1c21kkgcwjPw/exec?api=downloadImage&page=1' | base64 --decode > streaming/match_announce_1_2.png
-          curl -L 'https://script.google.com/macros/s/AKfycbx8uGR7utFSeYi1AO8r9dGKSFsWgKK4DYh0nUFZCLfN6Vr_s5qtNftmnx1c21kkgcwjPw/exec?api=downloadImage&page=2' | base64 --decode > streaming/match_announce_1_3.png
-          curl -L 'https://script.google.com/macros/s/AKfycbx8uGR7utFSeYi1AO8r9dGKSFsWgKK4DYh0nUFZCLfN6Vr_s5qtNftmnx1c21kkgcwjPw/exec?api=downloadImage&page=3' | base64 --decode > streaming/match_announce_2_1.png
-          curl -L 'https://script.google.com/macros/s/AKfycbx8uGR7utFSeYi1AO8r9dGKSFsWgKK4DYh0nUFZCLfN6Vr_s5qtNftmnx1c21kkgcwjPw/exec?api=downloadImage&page=4' | base64 --decode > streaming/match_announce_2_2.png
-          curl -L 'https://script.google.com/macros/s/AKfycbx8uGR7utFSeYi1AO8r9dGKSFsWgKK4DYh0nUFZCLfN6Vr_s5qtNftmnx1c21kkgcwjPw/exec?api=downloadImage&page=5' | base64 --decode > streaming/match_announce_2_3.png
+          curl -L "$ASSET_GENERATION_API_ENDPOINT?api=downloadImage&page=0" | base64 --decode > streaming/match_announce_1_1.png
+          curl -L "$ASSET_GENERATION_API_ENDPOINT?api=downloadImage&page=1" | base64 --decode > streaming/match_announce_1_2.png
+          curl -L "$ASSET_GENERATION_API_ENDPOINT?api=downloadImage&page=2" | base64 --decode > streaming/match_announce_1_3.png
+          curl -L "$ASSET_GENERATION_API_ENDPOINT?api=downloadImage&page=3" | base64 --decode > streaming/match_announce_2_1.png
+          curl -L "$ASSET_GENERATION_API_ENDPOINT?api=downloadImage&page=4" | base64 --decode > streaming/match_announce_2_2.png
+          curl -L "$ASSET_GENERATION_API_ENDPOINT?api=downloadImage&page=5" | base64 --decode > streaming/match_announce_2_3.png
       - name: Replace Image
         run: |
           cp_image() {
@@ -111,12 +112,13 @@ jobs:
         if: steps.count_changes.outputs.count > 0
         uses: sarisia/actions-status-discord@v1.13.0
         with:
-          webhook: $NOTIFICATION_TARGET
-          nocontext: true
-          url: ${{ steps.create_pr.outputs.pr_url }}
-          content: "画像更新PRをマージしました"
+          webhook: ${{ env.NOTIFICATION_TARGET }}
+          title: 画像更新PRをマージしました
+          description: ${{ steps.create_pr.outputs.pr_url }}
+          nodetail: true
+          notimestamp: true
       - uses: sarisia/actions-status-discord@v1.13.0
         if: always()
         with:
-          webhook: $NOTIFICATION_TARGET
+          webhook: ${{ env.NOTIFICATION_TARGET }}
           status: ${{ job.status }}
