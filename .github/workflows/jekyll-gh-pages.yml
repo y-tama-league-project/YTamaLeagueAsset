@@ -21,6 +21,9 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  NOTIFICATION_TARGET: "https://discord.com/api/webhooks/1185504716659101767/OZUmuAWBMGq-vKqBf6tCyd1DIhWOpY4NGPmalwIlVg493zTialHtAFyb3vp8RglkIp4i"
+
 jobs:
   # Build job
   build:
@@ -49,3 +52,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+      - uses: sarisia/actions-status-discord@v1.13.0
+        if: always()
+        with:
+          webhook: ${{ env.NOTIFICATION_TARGET }}
+          status: ${{ job.status }}
