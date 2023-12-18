@@ -7,7 +7,7 @@ on:
         required: true
 env:
   ASSET_GENERATION_API_ENDPOINT: "https://script.google.com/macros/s/AKfycbx8uGR7utFSeYi1AO8r9dGKSFsWgKK4DYh0nUFZCLfN6Vr_s5qtNftmnx1c21kkgcwjPw/exec"
-  NOTIFICATION_TARGET: "https://discord.com/api/webhooks/1185504662124765244/e6jyJIvgi0Zq36BUuaoX2wHZaXoboIMEA0sxEjh3wiZ14qo7duZ_gxrL8_1bNHhOuWxa"
+  NOTIFICATION_TARGET: "https://discord.com/api/webhooks/1185504716659101767/OZUmuAWBMGq-vKqBf6tCyd1DIhWOpY4NGPmalwIlVg493zTialHtAFyb3vp8RglkIp4i"
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -117,8 +117,3 @@ jobs:
           description: ${{ steps.create_pr.outputs.pr_url }}
           nodetail: true
           notimestamp: true
-      - uses: sarisia/actions-status-discord@v1.13.0
-        if: always()
-        with:
-          webhook: ${{ env.NOTIFICATION_TARGET }}
-          status: ${{ job.status }}
