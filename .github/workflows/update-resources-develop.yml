@@ -43,7 +43,7 @@ jobs:
               cp "season2/player_introduction/name/player_introduction_name_${player}.png" "streaming/player_introduction_name_${match}_${table}_${seat}.png"
           }
 
-          players=(${${{ github.event.inputs.players }}//,/ })
+          players=(${"${{ github.event.inputs.players }}"//,/ })
 
           echo ${players[@]}
 
