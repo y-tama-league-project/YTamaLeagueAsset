@@ -51,17 +51,32 @@ jobs:
           cp_image 01 01 01 ${players[0]}
           cp_image 01 01 02 ${players[1]}
           cp_image 01 01 03 ${players[2]}
-          cp_image 01 02 01 ${players[3]}
-          cp_image 01 02 02 ${players[4]}
-          cp_image 01 02 03 ${players[5]}
+          cp_image 01 01 04 ${players[3]}
 
-          cp_image 02 01 01 ${players[6]}
-          cp_image 02 01 02 ${players[7]}
-          cp_image 02 01 03 ${players[8]}
-          cp_image 02 02 01 ${players[9]}
-          cp_image 02 02 02 ${players[10]}
-          cp_image 02 02 03 ${players[11]}
+          cp_image 01 02 01 ${players[4]}
+          cp_image 01 02 02 ${players[5]}
+          cp_image 01 02 03 ${players[6]}
+          cp_image 01 02 04 ${players[7]}
 
+          cp_image 01 03 01 ${players[8]}
+          cp_image 01 03 02 ${players[9]}
+          cp_image 01 03 03 ${players[10]}
+          cp_image 01 03 04 ${players[11]}
+
+          cp_image 02 01 01 ${players[12]}
+          cp_image 02 01 02 ${players[13]}
+          cp_image 02 01 03 ${players[14]}
+          cp_image 02 01 04 ${players[15]}
+
+          cp_image 02 02 01 ${players[16]}
+          cp_image 02 02 02 ${players[17]}
+          cp_image 02 02 03 ${players[18]}
+          cp_image 02 02 04 ${players[19]}
+
+          cp_image 02 03 01 ${players[20]}
+          cp_image 02 03 02 ${players[21]}
+          cp_image 02 03 03 ${players[22]}
+          cp_image 02 03 04 ${players[22]}
       - name: Count changes
         id: count_changes
         run: |
