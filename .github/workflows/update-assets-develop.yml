@@ -26,6 +26,7 @@ jobs:
           git checkout -B pr_test_${{ github.run_number }}
       - name: Download Image
         run: |
+          mkdir streaming || true
           curl -L "$ASSET_GENERATION_API_ENDPOINT?api=downloadImage&page=0" | base64 --decode > streaming/match_announce_1_1.png
           curl -L "$ASSET_GENERATION_API_ENDPOINT?api=downloadImage&page=1" | base64 --decode > streaming/match_announce_1_2.png
           curl -L "$ASSET_GENERATION_API_ENDPOINT?api=downloadImage&page=2" | base64 --decode > streaming/match_announce_1_3.png
