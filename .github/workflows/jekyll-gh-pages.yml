@@ -22,7 +22,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  NOTIFICATION_TARGET: "https://discord.com/api/webhooks/1185504716659101767/OZUmuAWBMGq-vKqBf6tCyd1DIhWOpY4NGPmalwIlVg493zTialHtAFyb3vp8RglkIp4i"
+  NOTIFICATION_TARGET: "https://discord.com/api/webhooks/1186976651423252510/C4XpIPGD0fEQqYqrU4a4RfzhyK8_q_eQPZTSUHCnn5dtci3IDwiOXFj27n0GpLXhxKNd"
 
 jobs:
   # Build job
