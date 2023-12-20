@@ -6,7 +6,7 @@ on:
         descripts: array of paleyr id
         required: true
 env:
-  ASSET_GENERATION_API_ENDPOINT: "https://script.google.com/macros/s/AKfycbyN_Duax7wffBtwRsMOIoDtsf58cGFUvgfvdzNrE4z8t_LYFsMClcEZ_iwH8xtWepMZbg/exec"
+  ASSET_GENERATION_API_ENDPOINT: "https://script.google.com/macros/s/AKfycbxSqcURsp7DOtKl-ZahbDdPiVOkDF1NcJHmSmqV4mRFSr4xM3O70E1Z155BxsK796vT-g/exec"
   NOTIFICATION_TARGET: "https://discord.com/api/webhooks/1185496713667031050/KPqBdLEvGyporcw7U4eJLC_2Fa8iOWM6uxmxLt0BnDgOV_StxlPcvFi85m1bIpJg1SHv"
 jobs:
   Explore-GitHub-Actions:
