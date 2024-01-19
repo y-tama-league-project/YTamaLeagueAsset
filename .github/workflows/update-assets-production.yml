@@ -9,7 +9,7 @@ env:
   ASSET_GENERATION_API_ENDPOINT: "https://script.google.com/macros/s/AKfycbxSqcURsp7DOtKl-ZahbDdPiVOkDF1NcJHmSmqV4mRFSr4xM3O70E1Z155BxsK796vT-g/exec"
   NOTIFICATION_TARGET: "https://discord.com/api/webhooks/1185496713667031050/KPqBdLEvGyporcw7U4eJLC_2Fa8iOWM6uxmxLt0BnDgOV_StxlPcvFi85m1bIpJg1SHv"
 jobs:
-  Push Artifacts:
+  push-artifacts:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -121,5 +121,5 @@ jobs:
           description: ${{ steps.create_pr.outputs.pr_url }}
           nodetail: true
           notimestamp: true
-  Invoke Deploy:
+  invoke-deploy:
     uses: ./.github/workflows/jekyll-gh-pages.yml
