@@ -121,5 +121,5 @@ jobs:
           description: ${{ steps.create_pr.outputs.pr_url }}
           nodetail: true
           notimestamp: true
-    Invoke Deploy
-      uses: ./.github/workflows/jekyll-gh-pages.yml
+  Invoke Deploy:
+    uses: ./.github/workflows/jekyll-gh-pages.yml
