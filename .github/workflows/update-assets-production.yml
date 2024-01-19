@@ -48,7 +48,7 @@ jobs:
               cp "season2/player_introduction/name/player_introduction_name_${player}.png" "streaming/player_introduction_name_${match}_${table}_${seat}.png"
               cp "season2/player_introduction/name_front/player_introduction_name_front_${player}.png" "streaming/player_introduction_name_front_${match}_${table}_${seat}.png"
               cp "season2/interview/interview_${player}.jpg" "streaming/interview_${match}_${table}_${seat}.jpg"
-              cp "season2/interview/player_name_plate_${player}.jpg" "streaming/interview/player_name_plate_${match}_${table}_${seat}.jpg"
+              cp "season2/interview/player_name_plate_${player}.jpg" "streaming/player_name_plate_${match}_${table}_${seat}.jpg"
           }
 
           players=${{ github.event.inputs.players }}
