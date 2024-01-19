@@ -122,4 +122,5 @@ jobs:
           nodetail: true
           notimestamp: true
   invoke-deploy:
+    needs: push-artifacts
     uses: ./.github/workflows/jekyll-gh-pages.yml
