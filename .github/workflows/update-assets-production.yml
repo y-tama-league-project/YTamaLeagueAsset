@@ -41,14 +41,14 @@ jobs:
               player=${tmp[0]};
               team=${tmp[1]}
 
-              cp "team_logos/${team}/team_logo_${team}_1000x.png" "streaming/team_logo_${match}_${table}_${seat}.png"
-              cp "season2/battle_player_info/battle_player_info_${player}.png" "streaming/battle_player_info_${match}_${table}_${seat}.png"
-              cp "season2/player_introduction/background/player_introduction_background_${team}.png" "streaming/player_introduction_background_${match}_${table}_${seat}.png"
-              cp "season2/player_introduction/illust/player_introduction_illust_${player}.png" "streaming/player_introduction_illust_${match}_${table}_${seat}.png"
-              cp "season2/player_introduction/name/player_introduction_name_${player}.png" "streaming/player_introduction_name_${match}_${table}_${seat}.png"
-              cp "season2/player_introduction/name_front/player_introduction_name_front_${player}.png" "streaming/player_introduction_name_front_${match}_${table}_${seat}.png"
-              cp "season2/interview/interview_${player}.jpg" "streaming/interview_${match}_${table}_${seat}.jpg"
-              cp "season2/interview/player_name_plate_${player}.jpg" "streaming/player_name_plate_${match}_${table}_${seat}.jpg"
+              cp "team_logos/${team}/team_logo_${team}_1000x.png" "streaming/team_logo_${match}_${table}_${seat}.png" || true
+              cp "season2/battle_player_info/battle_player_info_${player}.png" "streaming/battle_player_info_${match}_${table}_${seat}.png" || true
+              cp "season2/player_introduction/background/player_introduction_background_${team}.png" "streaming/player_introduction_background_${match}_${table}_${seat}.png" || true
+              cp "season2/player_introduction/illust/player_introduction_illust_${player}.png" "streaming/player_introduction_illust_${match}_${table}_${seat}.png" || true
+              cp "season2/player_introduction/name/player_introduction_name_${player}.png" "streaming/player_introduction_name_${match}_${table}_${seat}.png" || true
+              cp "season2/player_introduction/name_front/player_introduction_name_front_${player}.png" "streaming/player_introduction_name_front_${match}_${table}_${seat}.png" || true
+              cp "season2/interview/interview_${player}.jpg" "streaming/interview_${match}_${table}_${seat}.jpg" || true
+              cp "season2/interview/player_name_plate_${player}.jpg" "streaming/player_name_plate_${match}_${table}_${seat}.jpg" || true
           }
 
           players=${{ github.event.inputs.players }}
