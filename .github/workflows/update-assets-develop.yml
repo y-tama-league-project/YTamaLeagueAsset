@@ -42,10 +42,10 @@ jobs:
               team=${tmp[1]}
 
               cp "team_logos/${team}/team_logo_${team}_1000x.png" "streaming/team_logo_${match}_${table}_${seat}.png"
-              cp "season2/battle_player_info/battle_player_info_${player}.png" "streaming/battle_player_info_${match}_${table}_${seat}.png"
-              cp "season2/player_introduction/background/player_introduction_background_${team}.png" "streaming/player_introduction_background_${match}_${table}_${seat}.png"
-              cp "season2/player_introduction/illust/player_introduction_illust_${player}.png" "streaming/player_introduction_illust_${match}_${table}_${seat}.png"
-              cp "season2/player_introduction/name/player_introduction_name_${player}.png" "streaming/player_introduction_name_${match}_${table}_${seat}.png"
+              cp "season3/battle_player_info/battle_player_info_${player}.png" "streaming/battle_player_info_${match}_${table}_${seat}.png"
+              cp "season3/player_introduction/background/player_introduction_background_${team}.png" "streaming/player_introduction_background_${match}_${table}_${seat}.png"
+              cp "season3/player_introduction/illust/player_introduction_illust_${player}.png" "streaming/player_introduction_illust_${match}_${table}_${seat}.png"
+              cp "season3/player_introduction/name/player_introduction_name_${player}.png" "streaming/player_introduction_name_${match}_${table}_${seat}.png"
           }
 
           players=${{ github.event.inputs.players }}
