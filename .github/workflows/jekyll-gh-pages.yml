@@ -40,14 +40,10 @@ jobs:
           source: ./
           destination: ./_site
       - name: Upload artifact
-        uses: actions/upload-artifact@v4  # Update to v4
+        uses: actions/upload-pages-artifact@v2
         with:
           name: site-artifact  # Ensure this name is used in deploy step
           path: ./_site  # Specify the path to upload
-          if-no-files-found: warn
-          compression-level: 6
-          overwrite: false
-          include-hidden-files: false
 
   # Deployment job
   deploy:
@@ -59,7 +55,7 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3  # Update to v3
+        uses: actions/deploy-pages@v3
         with:
           artifact_name: site-artifact  # Ensure this matches the upload name
       - uses: sarisia/actions-status-discord@v1.13.0
