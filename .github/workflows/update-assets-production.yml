@@ -24,12 +24,12 @@ jobs:
       - name: Download Image
         run: |
           mkdir streaming || true
-          curl -L "${{ secret.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=0" | base64 --decode > streaming/match_announce_1_1.png
-          curl -L "${{ secret.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=1" | base64 --decode > streaming/match_announce_1_2.png
-          curl -L "${{ secret.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=2" | base64 --decode > streaming/match_announce_1_3.png
-          curl -L "${{ secret.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=3" | base64 --decode > streaming/match_announce_2_1.png
-          curl -L "${{ secret.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=4" | base64 --decode > streaming/match_announce_2_2.png
-          curl -L "${{ secret.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=5" | base64 --decode > streaming/match_announce_2_3.png
+          curl -L "${{ secrets.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=0" | base64 --decode > streaming/match_announce_1_1.png
+          curl -L "${{ secrets.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=1" | base64 --decode > streaming/match_announce_1_2.png
+          curl -L "${{ secrets.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=2" | base64 --decode > streaming/match_announce_1_3.png
+          curl -L "${{ secrets.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=3" | base64 --decode > streaming/match_announce_2_1.png
+          curl -L "${{ secrets.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=4" | base64 --decode > streaming/match_announce_2_2.png
+          curl -L "${{ secrets.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=5" | base64 --decode > streaming/match_announce_2_3.png
       - name: Replace Image
         run: |
           cp_image() {
@@ -113,7 +113,7 @@ jobs:
         if: steps.count_changes.outputs.count > 0
         uses: sarisia/actions-status-discord@v1.13.0
         with:
-          webhook: ${{ secret.NOTIFICATION_TARGET }}
+          webhook: ${{ secrets.NOTIFICATION_TARGET }}
           title: 画像更新PRをマージしました
           description: ${{ steps.create_pr.outputs.pr_url }}
           nodetail: true
