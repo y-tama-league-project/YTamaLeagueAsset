@@ -5,10 +5,6 @@ on:
       players:
         descripts: array of player-id & team-id
         required: true
-env:
-  CURRENT_SEASON: "season4"
-  ASSET_GENERATION_API_ENDPOINT: "https://script.google.com/macros/s/AKfycbxSqcURsp7DOtKl-ZahbDdPiVOkDF1NcJHmSmqV4mRFSr4xM3O70E1Z155BxsK796vT-g/exec"
-  NOTIFICATION_TARGET: "https://discord.com/api/webhooks/1185496713667031050/KPqBdLEvGyporcw7U4eJLC_2Fa8iOWM6uxmxLt0BnDgOV_StxlPcvFi85m1bIpJg1SHv"
 jobs:
   push-artifacts:
     runs-on: ubuntu-latest
@@ -28,12 +24,12 @@ jobs:
       - name: Download Image
         run: |
           mkdir streaming || true
-          curl -L "${{ env.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=0" | base64 --decode > streaming/match_announce_1_1.png
-          curl -L "${{ env.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=1" | base64 --decode > streaming/match_announce_1_2.png
-          curl -L "${{ env.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=2" | base64 --decode > streaming/match_announce_1_3.png
-          curl -L "${{ env.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=3" | base64 --decode > streaming/match_announce_2_1.png
-          curl -L "${{ env.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=4" | base64 --decode > streaming/match_announce_2_2.png
-          curl -L "${{ env.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=5" | base64 --decode > streaming/match_announce_2_3.png
+          curl -L "${{ secret.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=0" | base64 --decode > streaming/match_announce_1_1.png
+          curl -L "${{ secret.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=1" | base64 --decode > streaming/match_announce_1_2.png
+          curl -L "${{ secret.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=2" | base64 --decode > streaming/match_announce_1_3.png
+          curl -L "${{ secret.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=3" | base64 --decode > streaming/match_announce_2_1.png
+          curl -L "${{ secret.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=4" | base64 --decode > streaming/match_announce_2_2.png
+          curl -L "${{ secret.ASSET_GENERATION_API_ENDPOINT }}?api=downloadImage&page=5" | base64 --decode > streaming/match_announce_2_3.png
       - name: Replace Image
         run: |
           cp_image() {
@@ -42,14 +38,14 @@ jobs:
               player=${tmp[0]};
               team=${tmp[1]}
 
-              cp "${{ env.CURRENT_SEASON }}/team_logo/team_logo_${team}_1000x.png" "streaming/team_logo_${match}_${table}_${seat}.png" || true
-              cp "${{ env.CURRENT_SEASON }}/battle_player_info/battle_player_info_${player}.png" "streaming/battle_player_info_${match}_${table}_${seat}.png" || true
-              cp "${{ env.CURRENT_SEASON }}/player_introduction/background/player_introduction_background_${team}.png" "streaming/player_introduction_background_${match}_${table}_${seat}.png" || true
-              cp "${{ env.CURRENT_SEASON }}/player_introduction/illust/player_introduction_illust_${player}.png" "streaming/player_introduction_illust_${match}_${table}_${seat}.png" || true
-              cp "${{ env.CURRENT_SEASON }}/player_introduction/name/player_introduction_name_${player}.png" "streaming/player_introduction_name_${match}_${table}_${seat}.png" || true
-              cp "${{ env.CURRENT_SEASON }}/player_introduction/name_frvont/player_introduction_name_front_${player}.png" "streaming/player_introduction_name_front_${match}_${table}_${seat}.png" || true
-              cp "${{ env.CURRENT_SEASON }}/interview/interview_${player}.jpg" "streaming/interview_${match}_${table}_${seat}.jpg" || true
-              cp "${{ env.CURRENT_SEASON }}/interview/player_name_plate_${player}.jpg" "streaming/player_name_plate_${match}_${table}_${seat}.jpg" || true
+              cp "latest/team_logo/team_logo_${team}_1000x.png" "streaming/team_logo_${match}_${table}_${seat}.png" || true
+              cp "offcial_game/battle_player_info/battle_player_info_${player}.png" "streaming/battle_player_info_${match}_${table}_${seat}.png" || true
+              cp "offcial_game/player_introduction/background/player_introduction_background_${team}.png" "streaming/player_introduction_background_${match}_${table}_${seat}.png" || true
+              cp "offcial_game/player_introduction/illust/player_introduction_illust_${player}.png" "streaming/player_introduction_illust_${match}_${table}_${seat}.png" || true
+              cp "offcial_game/player_introduction/name/player_introduction_name_${player}.png" "streaming/player_introduction_name_${match}_${table}_${seat}.png" || true
+              cp "offcial_game/player_introduction/name_frvont/player_introduction_name_front_${player}.png" "streaming/player_introduction_name_front_${match}_${table}_${seat}.png" || true
+              cp "offcial_game/interview/interview_${player}.jpg" "streaming/interview_${match}_${table}_${seat}.jpg" || true
+              cp "offcial_game/interview/player_name_plate_${player}.jpg" "streaming/player_name_plate_${match}_${table}_${seat}.jpg" || true
           }
 
           players=${{ github.event.inputs.players }}
@@ -117,11 +113,8 @@ jobs:
         if: steps.count_changes.outputs.count > 0
         uses: sarisia/actions-status-discord@v1.13.0
         with:
-          webhook: ${{ env.NOTIFICATION_TARGET }}
+          webhook: ${{ secret.NOTIFICATION_TARGET }}
           title: 画像更新PRをマージしました
           description: ${{ steps.create_pr.outputs.pr_url }}
           nodetail: true
           notimestamp: true
-  invoke-deploy:
-    needs: push-artifacts
-    uses: ./.github/workflows/jekyll-gh-pages.yml
