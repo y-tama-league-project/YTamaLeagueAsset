@@ -27,7 +27,7 @@ jobs:
     - name: Run bash script
       run: |
         chmod +x scripts/replace_streaming_player.sh
-        scripts/replace_streaming_player.sh \
+        ./scripts/replace_streaming_player.sh \
         ${{ github.event.inputs.match }} \
         ${{ github.event.inputs.table }} \
         ${{ github.event.inputs.seat }} \
