@@ -1,4 +1,10 @@
 #!bin/bash
+
+# format
+# ./replace_streaming_player.sh <match> <table> <seat> <player>
+# example
+# ./replace_streaming_player.sh 1 1 1 1
+
 match=$(printf "%02d" $1)
 table=$(printf "%02d" $2)
 seat=$(printf "%02d" $3)
