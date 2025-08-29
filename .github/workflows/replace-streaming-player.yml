@@ -1,0 +1,47 @@
+name: Run Bash Script and Commit Changes
+
+on: 
+  workflow_dispatch:
+    inputs:
+      match:
+        description: 'Match'
+        required: true
+      table:
+        description: 'Table'
+        required: true
+      seat:
+        description: 'Seat'
+        required: true
+      player:
+        description: 'Player'
+        required: true
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
+
+    - name: Run bash script
+      run: |
+        chmod +x scripts/replace_streaming_player.sh
+        sh scripts/replace_streaming_player.sh \
+        ${{ github.event.inputs.match }} \
+        ${{ github.event.inputs.table }} \
+        ${{ github.event.inputs.seat }} \
+        ${{ github.event.inputs.player }}
+
+    - name: Commit changes
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add .
+        git commit -m "Replace streaming player"
+
+    - name: Push changes
+      run: |
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
